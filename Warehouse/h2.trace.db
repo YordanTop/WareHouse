@@ -1,0 +1,1119 @@
+2024-05-21 19:44:07.734113+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE Company_Customer (\000d\000a    company_id INT [*]AUTOINCREMENT PRIMARY KEY NOT NULL,\000d\000a    company_name VARCHAR(50) NOT NULL,\000d\000a    company_owner VARCHAR(20) NOT NULL,\000d\000a    company_address VARCHAR(50) NOT NULL\000d\000a)"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE Company_Customer (
+    company_id INT AUTOINCREMENT PRIMARY KEY NOT NULL,
+    company_name VARCHAR(50) NOT NULL,
+    company_owner VARCHAR(20) NOT NULL,
+    company_address VARCHAR(50) NOT NULL
+) [42001-224]
+2024-05-21 19:44:07.749518+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE Items(\000d\000a    items_id INT [*]AUTOINCREMENT PRIMARY KEY NOT NULL,\000d\000a    items_name VARCHAR(30) NOT NULL,\000d\000a    quantities INT\000d\000a)"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE Items(
+    items_id INT AUTOINCREMENT PRIMARY KEY NOT NULL,
+    items_name VARCHAR(30) NOT NULL,
+    quantities INT
+) [42001-224]
+2024-05-21 19:44:07.749518+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE Orders(\000d\000a    order_id INT [*]AUTOINCREMENT PRIMARY KEY NOT NULL,\000d\000a    items_id INT NOT NULL,\000d\000a    company_id INT NOT NULL,\000d\000a    order_data DATE NOT NULL,\000d\000a    FOREIGN KEY (company_id) REFERENCES Company_Customer(company_id),\000d\000a    FOREIGN KEY (items_id) REFERENCES Items(items_id)\000d\000a)"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE Orders(
+    order_id INT AUTOINCREMENT PRIMARY KEY NOT NULL,
+    items_id INT NOT NULL,
+    company_id INT NOT NULL,
+    order_data DATE NOT NULL,
+    FOREIGN KEY (company_id) REFERENCES Company_Customer(company_id),
+    FOREIGN KEY (items_id) REFERENCES Items(items_id)
+) [42001-224]
+2024-05-21 19:45:16.275565+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Unknown data type: "INTIDENTITY"; SQL statement:
+CREATE TABLE Company_Customer (
+    company_id INTIDENTITY PRIMARY KEY NOT NULL,
+    company_name VARCHAR(50) NOT NULL,
+    company_owner VARCHAR(20) NOT NULL,
+    company_address VARCHAR(50) NOT NULL
+) [50004-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.Parser.readIfDataType1(Parser.java:5866)
+	at org.h2.command.Parser.readIfDataType(Parser.java:5704)
+	at org.h2.command.Parser.parseColumnWithType(Parser.java:5686)
+	at org.h2.command.Parser.parseColumnForTable(Parser.java:5565)
+	at org.h2.command.Parser.parseTableColumnDefinition(Parser.java:8999)
+	at org.h2.command.Parser.parseCreateTable(Parser.java:8939)
+	at org.h2.command.Parser.parseCreate(Parser.java:6404)
+	at org.h2.command.Parser.parsePrepared(Parser.java:666)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1109)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1096)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-05-21 19:45:16.280696+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE Items(\000d\000a    items_id INT [*]IDENTITY PRIMARY KEY NOT NULL,\000d\000a    items_name VARCHAR(30) NOT NULL,\000d\000a    quantities INT\000d\000a)"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE Items(
+    items_id INT IDENTITY PRIMARY KEY NOT NULL,
+    items_name VARCHAR(30) NOT NULL,
+    quantities INT
+) [42001-224]
+2024-05-21 19:45:16.284372+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE Orders(\000d\000a    order_id INT [*]IDENTITY PRIMARY KEY NOT NULL,\000d\000a    items_id INT NOT NULL,\000d\000a    company_id INT NOT NULL,\000d\000a    order_data DATE NOT NULL,\000d\000a    FOREIGN KEY (company_id) REFERENCES Company_Customer(company_id),\000d\000a    FOREIGN KEY (items_id) REFERENCES Items(items_id)\000d\000a)"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE Orders(
+    order_id INT IDENTITY PRIMARY KEY NOT NULL,
+    items_id INT NOT NULL,
+    company_id INT NOT NULL,
+    order_data DATE NOT NULL,
+    FOREIGN KEY (company_id) REFERENCES Company_Customer(company_id),
+    FOREIGN KEY (items_id) REFERENCES Items(items_id)
+) [42001-224]
+2024-05-21 19:46:39.491214+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Unknown data type: "INTIDENTITY"; SQL statement:
+CREATE TABLE Company_Customer (
+    company_id INTIDENTITY PRIMARY KEY NOT NULL,
+    company_name VARCHAR(50) NOT NULL,
+    company_owner VARCHAR(20) NOT NULL,
+    company_address VARCHAR(50) NOT NULL
+) [50004-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.Parser.readIfDataType1(Parser.java:5866)
+	at org.h2.command.Parser.readIfDataType(Parser.java:5704)
+	at org.h2.command.Parser.parseColumnWithType(Parser.java:5686)
+	at org.h2.command.Parser.parseColumnForTable(Parser.java:5565)
+	at org.h2.command.Parser.parseTableColumnDefinition(Parser.java:8999)
+	at org.h2.command.Parser.parseCreateTable(Parser.java:8939)
+	at org.h2.command.Parser.parseCreate(Parser.java:6404)
+	at org.h2.command.Parser.parsePrepared(Parser.java:666)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1109)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1096)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-05-21 19:46:39.502827+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "COMPANY_CUSTOMER" not found; SQL statement:
+CREATE TABLE Orders(
+    order_id IDENTITY PRIMARY KEY NOT NULL,
+    items_id INT NOT NULL,
+    company_id INT NOT NULL,
+    order_data DATE NOT NULL,
+    FOREIGN KEY (company_id) REFERENCES Company_Customer(company_id),
+    FOREIGN KEY (items_id) REFERENCES Items(items_id)
+) [42102-224]
+2024-05-21 19:47:08.915391+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ITEMS" already exists; SQL statement:
+CREATE TABLE Items(
+    items_id IDENTITY PRIMARY KEY NOT NULL,
+    items_name VARCHAR(30) NOT NULL,
+    quantities INT
+) [42101-224]
+2024-05-21 19:51:36.028104+03:00 database: flush
+org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]" [50000-224]
+	at com.h2database@2.2.224/org.h2.message.DbException.get(DbException.java:212)
+	at com.h2database@2.2.224/org.h2.message.DbException.convert(DbException.java:407)
+	at com.h2database@2.2.224/org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at com.h2database@2.2.224/org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at com.h2database@2.2.224/org.h2.engine.Database.<init>(Database.java:326)
+	at com.h2database@2.2.224/org.h2.engine.Engine.openSession(Engine.java:92)
+	at com.h2database@2.2.224/org.h2.engine.Engine.openSession(Engine.java:222)
+	at com.h2database@2.2.224/org.h2.engine.Engine.createSession(Engine.java:201)
+	at com.h2database@2.2.224/org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at com.h2database@2.2.224/org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at com.h2database@2.2.224/org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+	at DBConnection.DBConnection.getConnection(DBConnection.java:14)
+	at SqlManipulation.SqlSubmission.ShowInfo(SqlSubmission.java:29)
+	at SqlManipulation.SqlSubmission.actionPerformed(SqlSubmission.java:24)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]" [50000-224]
+	at com.h2database@2.2.224/org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at com.h2database@2.2.224/org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 55 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]
+	at com.h2database@2.2.224/org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at com.h2database@2.2.224/org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at com.h2database@2.2.224/org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at com.h2database@2.2.224/org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 49 more
+2024-05-21 19:52:17.895145+03:00 database: flush
+org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]" [50000-224]
+	at com.h2database@2.2.224/org.h2.message.DbException.get(DbException.java:212)
+	at com.h2database@2.2.224/org.h2.message.DbException.convert(DbException.java:407)
+	at com.h2database@2.2.224/org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at com.h2database@2.2.224/org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at com.h2database@2.2.224/org.h2.engine.Database.<init>(Database.java:326)
+	at com.h2database@2.2.224/org.h2.engine.Engine.openSession(Engine.java:92)
+	at com.h2database@2.2.224/org.h2.engine.Engine.openSession(Engine.java:222)
+	at com.h2database@2.2.224/org.h2.engine.Engine.createSession(Engine.java:201)
+	at com.h2database@2.2.224/org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at com.h2database@2.2.224/org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at com.h2database@2.2.224/org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+	at DBConnection.DBConnection.getConnection(DBConnection.java:14)
+	at SqlManipulation.SqlSubmission.ShowInfo(SqlSubmission.java:29)
+	at SqlManipulation.SqlSubmission.actionPerformed(SqlSubmission.java:24)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]" [50000-224]
+	at com.h2database@2.2.224/org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at com.h2database@2.2.224/org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 55 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]
+	at com.h2database@2.2.224/org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at com.h2database@2.2.224/org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at com.h2database@2.2.224/org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at com.h2database@2.2.224/org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 49 more
+2024-05-21 19:57:39.760648+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "ITEMS" because "CONSTRAINT_8B7" depends on it; SQL statement:
+DROP TABLE ITEMS [90107-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:108)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:133)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1109)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1096)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-05-21 19:57:52.071514+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "ITEMS" because "CONSTRAINT_8B7" depends on it; SQL statement:
+DROP TABLE Items [90107-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:108)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:133)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1109)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1096)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-05-21 19:58:27.481492+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DROP TABLE COMPANY_CUSTOMER\000d\000a[*]DROP TABLE ORDERS\000d\000aDROP TABLE Items"; SQL statement:
+DROP TABLE COMPANY_CUSTOMER
+DROP TABLE ORDERS
+DROP TABLE Items [42000-224]
+2024-05-21 19:58:42.104046+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DROP TABLE COMPANY_CUSTOMER\000d\000a[*]DROP TABLE ORDERS\000d\000aDROP TABLE Items"; SQL statement:
+DROP TABLE COMPANY_CUSTOMER
+DROP TABLE ORDERS
+DROP TABLE Items [42000-224]
+2024-05-21 19:58:47.319610+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DROP TABLE COMPANY_CUSTOMER\000d\000a[*]DROP TABLE ORDERS\000d\000aDROP TABLE Items"; SQL statement:
+DROP TABLE COMPANY_CUSTOMER
+DROP TABLE ORDERS
+DROP TABLE Items [42000-224]
+2024-05-21 19:59:04.028753+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "COMPANY_CUSTOMER" because "CONSTRAINT_8B" depends on it; SQL statement:
+DROP TABLE COMPANY_CUSTOMER [90107-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:108)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:133)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1109)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1096)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-05-21 19:59:21.711098+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DROP TABLE ORDERS\000d\000a[*]DROP TABLE Items\000d\000aDROP TABLE COMPANY_CUSTOMER"; SQL statement:
+DROP TABLE ORDERS
+DROP TABLE Items
+DROP TABLE COMPANY_CUSTOMER [42000-224]
+2024-05-21 19:59:29.764404+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DROP TABLE ORDERS\000d\000a[*]DROP TABLE Items\000d\000aDROP TABLE COMPANY_CUSTOMER"; SQL statement:
+DROP TABLE ORDERS
+DROP TABLE Items
+DROP TABLE COMPANY_CUSTOMER [42000-224]
+2024-05-21 19:59:30.854834+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DROP TABLE ORDERS\000d\000a[*]DROP TABLE Items\000d\000aDROP TABLE COMPANY_CUSTOMER"; SQL statement:
+DROP TABLE ORDERS
+DROP TABLE Items
+DROP TABLE COMPANY_CUSTOMER [42000-224]
+2024-05-21 19:59:46.266050+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DROP TABLE Items\000d\000a[*]DROP TABLE COMPANY_CUSTOMER"; SQL statement:
+DROP TABLE Items
+DROP TABLE COMPANY_CUSTOMER [42000-224]
+2024-05-21 19:59:57.191293+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DROP TABLE Items\000d\000a[*]DROP TABLE COMPANY_CUSTOMER"; SQL statement:
+DROP TABLE Items
+DROP TABLE COMPANY_CUSTOMER [42000-224]
+2024-05-21 20:00:42.239865+03:00 database: flush
+org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]" [50000-224]
+	at com.h2database@2.2.224/org.h2.message.DbException.get(DbException.java:212)
+	at com.h2database@2.2.224/org.h2.message.DbException.convert(DbException.java:407)
+	at com.h2database@2.2.224/org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at com.h2database@2.2.224/org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at com.h2database@2.2.224/org.h2.engine.Database.<init>(Database.java:326)
+	at com.h2database@2.2.224/org.h2.engine.Engine.openSession(Engine.java:92)
+	at com.h2database@2.2.224/org.h2.engine.Engine.openSession(Engine.java:222)
+	at com.h2database@2.2.224/org.h2.engine.Engine.createSession(Engine.java:201)
+	at com.h2database@2.2.224/org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at com.h2database@2.2.224/org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at com.h2database@2.2.224/org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+	at DBConnection.DBConnection.getConnection(DBConnection.java:14)
+	at SqlManipulation.SqlSubmission.ShowInfo(SqlSubmission.java:29)
+	at SqlManipulation.SqlSubmission.actionPerformed(SqlSubmission.java:24)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]" [50000-224]
+	at com.h2database@2.2.224/org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at com.h2database@2.2.224/org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 55 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]
+	at com.h2database@2.2.224/org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at com.h2database@2.2.224/org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at com.h2database@2.2.224/org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at com.h2database@2.2.224/org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at com.h2database@2.2.224/org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 49 more
+2024-05-22 11:56:51.899778+03:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer CC JOIN [*]Order O\000d\000a                              ON CC.id = O.company_id JOIN Items I\000d\000a                              ON I.id = O.items_id"; expected "identifier"; SQL statement:
+SELECT * FROM Company_Customer CC JOIN Order O
+                              ON CC.id = O.company_id JOIN Items I
+                              ON I.id = O.items_id [42001-224]
+2024-05-22 11:57:50.446592+03:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer AS CC JOIN [*]Order AS O\000d\000a                              ON AS CC.id = O.company_id JOIN Items AS I\000d\000a                              ON I.id = O.items_id"; expected "identifier"; SQL statement:
+SELECT * FROM Company_Customer AS CC JOIN Order AS O
+                              ON AS CC.id = O.company_id JOIN Items AS I
+                              ON I.id = O.items_id [42001-224]
+2024-05-22 11:59:47.287242+03:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer AS CC FULL [*]OUTER JOIN Order AS O\000d\000a                              ON AS CC.id = O.company_id FULL OUTER JOIN Items AS I\000d\000a                              ON I.id = O.items_id"; SQL statement:
+SELECT * FROM Company_Customer AS CC FULL OUTER JOIN Order AS O
+                              ON AS CC.id = O.company_id FULL OUTER JOIN Items AS I
+                              ON I.id = O.items_id [42000-224]
+2024-05-22 12:00:01.728520+03:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer AS CC [*]F INNER JOIN Order AS O\000d\000a                              ON AS CC.id = O.company_id INNER JOIN Items AS I\000d\000a                              ON I.id = O.items_id"; SQL statement:
+SELECT * FROM Company_Customer AS CC F INNER JOIN Order AS O
+                              ON AS CC.id = O.company_id INNER JOIN Items AS I
+                              ON I.id = O.items_id [42000-224]
+2024-05-22 12:53:11.533188+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer AS CC INNER JOIN [*]Order AS O"; expected "identifier"; SQL statement:
+SELECT * FROM Company_Customer AS CC INNER JOIN Order AS O [42001-224]
+2024-05-22 12:53:20.284413+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer INNER JOIN [*]Order"; expected "identifier"; SQL statement:
+SELECT * FROM Company_Customer INNER JOIN Order [42001-224]
+2024-05-22 12:53:21.328155+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer INNER JOIN [*]Order"; expected "identifier"; SQL statement:
+SELECT * FROM Company_Customer INNER JOIN Order [42001-224]
+2024-05-22 12:53:22.041830+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer INNER JOIN [*]Order"; expected "identifier"; SQL statement:
+SELECT * FROM Company_Customer INNER JOIN Order [42001-224]
+2024-05-22 12:53:22.275479+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer INNER JOIN [*]Order"; expected "identifier"; SQL statement:
+SELECT * FROM Company_Customer INNER JOIN Order [42001-224]
+2024-05-22 12:53:22.516475+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer INNER JOIN [*]Order"; expected "identifier"; SQL statement:
+SELECT * FROM Company_Customer INNER JOIN Order [42001-224]
+2024-05-22 12:53:22.747271+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer INNER JOIN [*]Order"; expected "identifier"; SQL statement:
+SELECT * FROM Company_Customer INNER JOIN Order [42001-224]
+2024-05-22 12:53:23.023451+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer INNER JOIN [*]Order"; expected "identifier"; SQL statement:
+SELECT * FROM Company_Customer INNER JOIN Order [42001-224]
+2024-05-22 12:53:23.278900+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer INNER JOIN [*]Order"; expected "identifier"; SQL statement:
+SELECT * FROM Company_Customer INNER JOIN Order [42001-224]
+2024-05-22 12:53:23.498450+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer INNER JOIN [*]Order"; expected "identifier"; SQL statement:
+SELECT * FROM Company_Customer INNER JOIN Order [42001-224]
+2024-05-22 12:53:34.751978+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer INNER JOIN [*]Order"; expected "identifier"; SQL statement:
+SELECT * FROM Company_Customer INNER JOIN Order [42001-224]
+2024-05-22 12:53:43.587048+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer  JOIN [*]Order"; expected "identifier"; SQL statement:
+SELECT * FROM Company_Customer  JOIN Order [42001-224]
+2024-05-22 12:54:08.662478+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer AS CC INNER JOIN [*]Order AS O\000d\000a                              ON CC.id = O.company_id"; expected "identifier"; SQL statement:
+SELECT * FROM Company_Customer AS CC INNER JOIN Order AS O
+                              ON CC.id = O.company_id [42001-224]
+2024-05-22 12:54:29.142906+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM Company_Customer AS CC INNER JOIN [*]Order AS O ON CC.id = O.company_id"; expected "identifier"; SQL statement:
+SELECT * FROM Company_Customer AS CC INNER JOIN Order AS O ON CC.id = O.company_id [42001-224]
+2024-05-22 12:56:58.316788+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * \000d\000aFROM Company_Customer CC \000d\000aINNER JOIN [*]Order O ON CC.id = O.company_id \000d\000aINNER JOIN Items I ON I.id = O.items_id"; expected "identifier"; SQL statement:
+SELECT * 
+FROM Company_Customer CC 
+INNER JOIN Order O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id [42001-224]
+2024-05-22 12:57:18.559074+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * \000d\000aFROM Company_Customer CC \000d\000aINNER JOIN [*]Order O ON CC.id = O.company_id \000d\000aINNER JOIN Items I ON I.id = O.items_id"; expected "identifier"; SQL statement:
+SELECT * 
+FROM Company_Customer CC 
+INNER JOIN Order O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id [42001-224]
+2024-05-22 13:10:30.430683+03:00 database: flush
+org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+	at DBConnection.DBConnection.getConnection(DBConnection.java:14)
+	at SqlManipulation.SqlSubmission.ShowInfo(SqlSubmission.java:29)
+	at SqlManipulation.SqlSubmission.actionPerformed(SqlSubmission.java:24)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 55 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 49 more
+2024-05-22 13:54:18.572617+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "COMPANIES" not found; SQL statement:
+SELECT CC.name "Companies",
+       I.name "Product",
+       I.quantities "Quantity", 
+       O.order_data "Order data",
+
+FROM Company_Customer CC 
+INNER JOIN Orders O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id 
+Order By Companies [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.command.query.Select.prepareExpressions(Select.java:1170)
+	at org.h2.command.query.Query.prepare(Query.java:218)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1109)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1096)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-05-22 13:54:43.713314+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "COMPANIES" not found; SQL statement:
+SELECT CC.name "Companies",
+       I.name "Product",
+       I.quantities "Quantity", 
+       O.order_data "Order data",
+
+FROM Company_Customer CC 
+INNER JOIN Orders O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id 
+Order By Companies [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.command.query.Select.prepareExpressions(Select.java:1170)
+	at org.h2.command.query.Query.prepare(Query.java:218)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1109)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1096)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-05-22 13:54:45.145332+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "COMPANIES" not found; SQL statement:
+SELECT CC.name "Companies",
+       I.name "Product",
+       I.quantities "Quantity", 
+       O.order_data "Order data",
+
+FROM Company_Customer CC 
+INNER JOIN Orders O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id 
+Order By Companies [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.command.query.Select.prepareExpressions(Select.java:1170)
+	at org.h2.command.query.Query.prepare(Query.java:218)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1109)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1096)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-05-22 14:10:55.929272+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "Yordan_Nuts" not found; SQL statement:
+INSERT INTO Company_Customer (name,owner,address)
+VALUES ("Yordan_Nuts","Yordan","Vasil Aprilov 3") [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:300)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1109)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1096)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-05-22 14:12:00.188841+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "Yordan Nuts" not found; SQL statement:
+INSERT INTO Company_Customer (name,owner,address)
+VALUES ("Yordan Nuts","Yordan","Vasil Aprilov 3") [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:300)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1109)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1096)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-05-22 14:27:13.450364+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "GETDATE" not found; SQL statement:
+INSERT INTO Orders (items_id, company_id, order_data)
+VALUES (1, 1, GETDATE()) [90022-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.Parser.readFunction(Parser.java:3786)
+	at org.h2.command.Parser.readTermWithIdentifier(Parser.java:5148)
+	at org.h2.command.Parser.readTerm(Parser.java:4834)
+	at org.h2.command.Parser.readFactor(Parser.java:3337)
+	at org.h2.command.Parser.readSum(Parser.java:3324)
+	at org.h2.command.Parser.readConcat(Parser.java:3289)
+	at org.h2.command.Parser.readCondition(Parser.java:3079)
+	at org.h2.command.Parser.readExpression(Parser.java:2999)
+	at org.h2.command.Parser.readExpressionOrDefault(Parser.java:2985)
+	at org.h2.command.Parser.parseValuesForCommand(Parser.java:1704)
+	at org.h2.command.Parser.parseInsert(Parser.java:1569)
+	at org.h2.command.Parser.parsePrepared(Parser.java:719)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1109)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1096)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-05-22 14:29:58.816920+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "GETDATE" not found; SQL statement:
+INSERT INTO Orders (items_id, company_id, order_data)
+VALUES (1, 1, GETDATE()) [90022-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.Parser.readFunction(Parser.java:3786)
+	at org.h2.command.Parser.readTermWithIdentifier(Parser.java:5148)
+	at org.h2.command.Parser.readTerm(Parser.java:4834)
+	at org.h2.command.Parser.readFactor(Parser.java:3337)
+	at org.h2.command.Parser.readSum(Parser.java:3324)
+	at org.h2.command.Parser.readConcat(Parser.java:3289)
+	at org.h2.command.Parser.readCondition(Parser.java:3079)
+	at org.h2.command.Parser.readExpression(Parser.java:2999)
+	at org.h2.command.Parser.readExpressionOrDefault(Parser.java:2985)
+	at org.h2.command.Parser.parseValuesForCommand(Parser.java:1704)
+	at org.h2.command.Parser.parseInsert(Parser.java:1569)
+	at org.h2.command.Parser.parsePrepared(Parser.java:719)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1109)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1096)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-05-22 14:30:02.638528+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "GETDATE" not found; SQL statement:
+INSERT INTO Orders (items_id, company_id, order_data)
+VALUES (1, 1, GETDATE()) [90022-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.Parser.readFunction(Parser.java:3786)
+	at org.h2.command.Parser.readTermWithIdentifier(Parser.java:5148)
+	at org.h2.command.Parser.readTerm(Parser.java:4834)
+	at org.h2.command.Parser.readFactor(Parser.java:3337)
+	at org.h2.command.Parser.readSum(Parser.java:3324)
+	at org.h2.command.Parser.readConcat(Parser.java:3289)
+	at org.h2.command.Parser.readCondition(Parser.java:3079)
+	at org.h2.command.Parser.readExpression(Parser.java:2999)
+	at org.h2.command.Parser.readExpressionOrDefault(Parser.java:2985)
+	at org.h2.command.Parser.parseValuesForCommand(Parser.java:1704)
+	at org.h2.command.Parser.parseInsert(Parser.java:1569)
+	at org.h2.command.Parser.parsePrepared(Parser.java:719)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1109)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1096)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-05-22 14:36:40.874343+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Function "GETDATE" not found; SQL statement:
+INSERT INTO Orders (items_id, company_id, order_data)
+VALUES (1, 1, GETDATE()) [90022-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.Parser.readFunction(Parser.java:3786)
+	at org.h2.command.Parser.readTermWithIdentifier(Parser.java:5148)
+	at org.h2.command.Parser.readTerm(Parser.java:4834)
+	at org.h2.command.Parser.readFactor(Parser.java:3337)
+	at org.h2.command.Parser.readSum(Parser.java:3324)
+	at org.h2.command.Parser.readConcat(Parser.java:3289)
+	at org.h2.command.Parser.readCondition(Parser.java:3079)
+	at org.h2.command.Parser.readExpression(Parser.java:2999)
+	at org.h2.command.Parser.readExpressionOrDefault(Parser.java:2985)
+	at org.h2.command.Parser.parseValuesForCommand(Parser.java:1704)
+	at org.h2.command.Parser.parseInsert(Parser.java:1569)
+	at org.h2.command.Parser.parsePrepared(Parser.java:719)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1109)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1096)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-05-22 16:40:25.934115+03:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CC.name ""Companies"",\000a       I.name ""Product"",\000a       I.quantities ""Quantity"", \000a       O.order_data ""Order data"",\000a\000aFROM Company_Customer CC \000aINNER JOIN Orders O ON CC.id = O.company_id \000aINNER JOIN Items I ON I.id = O.items_id Order By CC.nameOrder [*]By CC.name, I.name ASC"; SQL statement:
+SELECT CC.name "Companies",
+       I.name "Product",
+       I.quantities "Quantity", 
+       O.order_data "Order data",
+
+FROM Company_Customer CC 
+INNER JOIN Orders O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id Order By CC.nameOrder By CC.name, I.name ASC [42000-224]
+2024-05-22 16:40:38.818464+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CC.name ""Companies"",\000a       I.name ""Product"",\000a       I.quantities ""Quantity"", \000a       O.order_data ""Order data"",\000a\000aFROM Company_Customer CC \000aINNER JOIN Orders O ON CC.id = O.company_id \000aINNER JOIN Items I ON I.id = O.items_id Order By CC.nameOrder [*]By CC.name, I.name ASCOrder By Quantities"; SQL statement:
+SELECT CC.name "Companies",
+       I.name "Product",
+       I.quantities "Quantity", 
+       O.order_data "Order data",
+
+FROM Company_Customer CC 
+INNER JOIN Orders O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id Order By CC.nameOrder By CC.name, I.name ASCOrder By Quantities [42000-224]
+2024-05-22 16:40:45.775216+03:00 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CC.name ""Companies"",\000a       I.name ""Product"",\000a       I.quantities ""Quantity"", \000a       O.order_data ""Order data"",\000a\000aFROM Company_Customer CC \000aINNER JOIN Orders O ON CC.id = O.company_id \000aINNER JOIN Items I ON I.id = O.items_id Order By CC.nameOrder [*]By CC.name, I.name ASCOrder By QuantitiesOrder By Quantities"; SQL statement:
+SELECT CC.name "Companies",
+       I.name "Product",
+       I.quantities "Quantity", 
+       O.order_data "Order data",
+
+FROM Company_Customer CC 
+INNER JOIN Orders O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id Order By CC.nameOrder By CC.name, I.name ASCOrder By QuantitiesOrder By Quantities [42000-224]
+2024-05-22 16:40:50.640757+03:00 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CC.name ""Companies"",\000a       I.name ""Product"",\000a       I.quantities ""Quantity"", \000a       O.order_data ""Order data"",\000a\000aFROM Company_Customer CC \000aINNER JOIN Orders O ON CC.id = O.company_id \000aINNER JOIN Items I ON I.id = O.items_id Order By CC.nameOrder [*]By CC.name, I.name ASCOrder By QuantitiesOrder By QuantitiesOrder By O.order_data"; SQL statement:
+SELECT CC.name "Companies",
+       I.name "Product",
+       I.quantities "Quantity", 
+       O.order_data "Order data",
+
+FROM Company_Customer CC 
+INNER JOIN Orders O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id Order By CC.nameOrder By CC.name, I.name ASCOrder By QuantitiesOrder By QuantitiesOrder By O.order_data [42000-224]
+2024-05-22 16:40:56.520681+03:00 jdbc[8]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CC.name ""Companies"",\000a       I.name ""Product"",\000a       I.quantities ""Quantity"", \000a       O.order_data ""Order data"",\000a\000aFROM Company_Customer CC \000aINNER JOIN Orders O ON CC.id = O.company_id \000aINNER JOIN Items I ON I.id = O.items_id Order By CC.nameOrder [*]By CC.name, I.name ASCOrder By QuantitiesOrder By QuantitiesOrder By O.order_dataOrder By Quantities"; SQL statement:
+SELECT CC.name "Companies",
+       I.name "Product",
+       I.quantities "Quantity", 
+       O.order_data "Order data",
+
+FROM Company_Customer CC 
+INNER JOIN Orders O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id Order By CC.nameOrder By CC.name, I.name ASCOrder By QuantitiesOrder By QuantitiesOrder By O.order_dataOrder By Quantities [42000-224]
+2024-05-22 16:41:01.478749+03:00 jdbc[9]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CC.name ""Companies"",\000a       I.name ""Product"",\000a       I.quantities ""Quantity"", \000a       O.order_data ""Order data"",\000a\000aFROM Company_Customer CC \000aINNER JOIN Orders O ON CC.id = O.company_id \000aINNER JOIN Items I ON I.id = O.items_id Order By CC.nameOrder [*]By CC.name, I.name ASCOrder By QuantitiesOrder By QuantitiesOrder By O.order_dataOrder By QuantitiesOrder By CC.name"; SQL statement:
+SELECT CC.name "Companies",
+       I.name "Product",
+       I.quantities "Quantity", 
+       O.order_data "Order data",
+
+FROM Company_Customer CC 
+INNER JOIN Orders O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id Order By CC.nameOrder By CC.name, I.name ASCOrder By QuantitiesOrder By QuantitiesOrder By O.order_dataOrder By QuantitiesOrder By CC.name [42000-224]
+2024-05-22 16:42:58.817520+03:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CC.name ""Companies"",\000a       I.name ""Product"",\000a       I.quantities ""Quantity"", \000a       O.order_data ""Order data"",\000a\000aFROM Company_Customer CC \000aINNER JOIN Orders O ON CC.id = O.company_id \000aINNER JOIN Items I ON I.id = O.items_id Order By CC.name, I.name [*]ASCOrder By O.order_data"; SQL statement:
+SELECT CC.name "Companies",
+       I.name "Product",
+       I.quantities "Quantity", 
+       O.order_data "Order data",
+
+FROM Company_Customer CC 
+INNER JOIN Orders O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id Order By CC.name, I.name ASCOrder By O.order_data [42000-224]
+2024-05-22 16:44:03.211076+03:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]Order By O.order_data"; SQL statement:
+Order By O.order_data [42000-224]
+2024-05-22 16:45:08.048691+03:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]nullOrder By Quantities"; SQL statement:
+nullOrder By Quantities [42000-224]
+2024-05-22 16:45:35.234996+03:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]nullOrder By CC.name"; SQL statement:
+nullOrder By CC.name [42000-224]
+2024-05-22 16:48:43.437936+03:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]nullOrder By CC.name"; SQL statement:
+nullOrder By CC.name [42000-224]
+2024-05-22 17:02:02.510180+03:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CC.name ""Companies"",\000a       I.name ""Product"",\000a       I.quantities ""Quantity"", \000a       O.order_data ""Order data"",\000a\000aFROM Company_Customer CC \000aINNER JOIN Orders O ON CC.id = O.company_id \000aINNER JOIN Items I ON I.id = O.items_id Order By CC.nameOrder [*]By CC.name"; SQL statement:
+SELECT CC.name "Companies",
+       I.name "Product",
+       I.quantities "Quantity", 
+       O.order_data "Order data",
+
+FROM Company_Customer CC 
+INNER JOIN Orders O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id Order By CC.nameOrder By CC.name [42000-224]
+2024-05-22 17:37:50.149748+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CC.name ""Companies"",\000a       I.name ""Product"",\000a       I.quantities ""Quantity"", \000a       O.order_data ""Order data"",\000a\000aFROM Company_Customer CC \000aINNER JOIN Orders O ON CC.id = O.company_id \000aINNER JOIN Items I ON I.id = O.items_id Where I.name = [*]Order By CC.name"; expected "ALL (, ANY (, SOME ("; SQL statement:
+SELECT CC.name "Companies",
+       I.name "Product",
+       I.quantities "Quantity", 
+       O.order_data "Order data",
+
+FROM Company_Customer CC 
+INNER JOIN Orders O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id Where I.name = Order By CC.name [42001-224]
+2024-05-22 17:38:41.532334+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CC.name ""Companies"",\000a       I.name ""Product"",\000a       I.quantities ""Quantity"", \000a       O.order_data ""Order data"",\000a\000aFROM Company_Customer CC \000aINNER JOIN Orders O ON CC.id = O.company_id \000aINNER JOIN Items I ON I.id = O.items_id Where I.name = [*]Order By CC.name"; expected "ALL (, ANY (, SOME ("; SQL statement:
+SELECT CC.name "Companies",
+       I.name "Product",
+       I.quantities "Quantity", 
+       O.order_data "Order data",
+
+FROM Company_Customer CC 
+INNER JOIN Orders O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id Where I.name = Order By CC.name [42001-224]
+2024-05-22 17:38:55.579459+03:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CC.name ""Companies"",\000a       I.name ""Product"",\000a       I.quantities ""Quantity"", \000a       O.order_data ""Order data"",\000a\000aFROM Company_Customer CC \000aINNER JOIN Orders O ON CC.id = O.company_id \000aINNER JOIN Items I ON I.id = O.items_id Where I.name = [*]Order By CC.name"; expected "ALL (, ANY (, SOME ("; SQL statement:
+SELECT CC.name "Companies",
+       I.name "Product",
+       I.quantities "Quantity", 
+       O.order_data "Order data",
+
+FROM Company_Customer CC 
+INNER JOIN Orders O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id Where I.name = Order By CC.name [42001-224]
+2024-05-22 17:39:04.604357+03:00 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CC.name ""Companies"",\000a       I.name ""Product"",\000a       I.quantities ""Quantity"", \000a       O.order_data ""Order data"",\000a\000aFROM Company_Customer CC \000aINNER JOIN Orders O ON CC.id = O.company_id \000aINNER JOIN Items I ON I.id = O.items_id Where I.name = [*]Order By CC.name"; expected "ALL (, ANY (, SOME ("; SQL statement:
+SELECT CC.name "Companies",
+       I.name "Product",
+       I.quantities "Quantity", 
+       O.order_data "Order data",
+
+FROM Company_Customer CC 
+INNER JOIN Orders O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id Where I.name = Order By CC.name [42001-224]
+2024-05-22 21:14:05.149290+03:00 database: flush
+org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:288)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:811)
+	at org.h2.server.web.WebApp.login(WebApp.java:1039)
+	at org.h2.server.web.WebApp.process(WebApp.java:227)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:177)
+	at org.h2.server.web.WebThread.process(WebThread.java:154)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 22 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 16 more
+2024-05-22 21:15:25.357459+03:00 database: flush
+org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:288)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:811)
+	at org.h2.server.web.WebApp.login(WebApp.java:1039)
+	at org.h2.server.web.WebApp.process(WebApp.java:227)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:177)
+	at org.h2.server.web.WebThread.process(WebThread.java:154)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 22 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 16 more
+2024-05-22 21:15:34.722268+03:00 database: flush
+org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:288)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:811)
+	at org.h2.server.web.WebApp.login(WebApp.java:1039)
+	at org.h2.server.web.WebApp.process(WebApp.java:227)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:177)
+	at org.h2.server.web.WebThread.process(WebThread.java:154)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 22 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Dani/eclipse-workspace/Warehouse_pr/Warehouse/h2.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 16 more
+2024-05-23 20:43:50.714677+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CC.name Companies,\000a       I.name Product,\000a       I.quantities Quantity, \000a       O.order_data [*]'Order data',\000a\000aFROM Company_Customer CC \000aINNER JOIN Orders O ON CC.id = O.company_id \000aINNER JOIN Items I ON I.id = O.items_id Where I.name LIKE '%%' Order By CC.name"; SQL statement:
+SELECT CC.name Companies,
+       I.name Product,
+       I.quantities Quantity, 
+       O.order_data 'Order data',
+
+FROM Company_Customer CC 
+INNER JOIN Orders O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id Where I.name LIKE '%%' Order By CC.name [42000-224]
+2024-05-23 20:44:33.091569+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CC.name [*]'Company',\000a       I.name 'Product',\000a       I.quantities 'Quantity', \000a       O.order_data 'Order data',\000a\000aFROM Company_Customer CC \000aINNER JOIN Orders O ON CC.id = O.company_id \000aINNER JOIN Items I ON I.id = O.items_id Where I.name LIKE '%%' Order By CC.name"; SQL statement:
+SELECT CC.name 'Company',
+       I.name 'Product',
+       I.quantities 'Quantity', 
+       O.order_data 'Order data',
+
+FROM Company_Customer CC 
+INNER JOIN Orders O ON CC.id = O.company_id 
+INNER JOIN Items I ON I.id = O.items_id Where I.name LIKE '%%' Order By CC.name [42000-224]

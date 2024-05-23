@@ -14,14 +14,14 @@ import FrameUpdates.UpdateFrame;
 
 public class ChangeFrames implements ActionListener {
 
-	private _Submition Main;
+	private _FrameCreating Main;
 	
 	private ArrayList<Class> Options = new ArrayList<Class>();
 	
-	// @param canvas is a the panel that we are going to put elements in
+	// @param Main is the panel that we are going to put elements in
 	// @param panelOption the type of panel
 	
-	public ChangeFrames(_Submition panelOption) {
+	public ChangeFrames(_FrameCreating panelOption) {
 		Main =  panelOption;
 		
 		Options.add(new DeleteFrame().getClass());
