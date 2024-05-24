@@ -2,13 +2,12 @@ package FrameUpdates;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
+import SqlManipulation.SqlSubmission;
 import Warehouse_frame.MainFrame;
 import Warehouse_frame._FrameCreating;
 
@@ -58,14 +57,45 @@ public class DeleteFrame implements _FrameCreating {
 		JTextField iFieldName = new JTextField();
 		iFieldName.setPreferredSize(new Dimension(200,20));
 
+		JLabel iCName = new JLabel("Company's name:");
+		iCName.setPreferredSize(new Dimension(200,20));
+
+		JTextField iFieldCName = new JTextField();
+		iFieldCName.setPreferredSize(new Dimension(200,20));
+
 
 		OptionFrame.add(frameName);
 
 		FieldFrame.add(iName);
 		FieldFrame.add(iFieldName);
 
+		FieldFrame.add(iCName);
+		FieldFrame.add(iFieldCName);
+
+
+		JTextField[] fields = new JTextField[]{
+				iFieldName,iFieldCName
+		};
 
 		Submition.add(Submit);
+
+		Submit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(SqlSubmission.isFieldsEmpty(fields) == false){
+					SqlSubmission.SqlDelete("DELETE FROM Items\n" +
+							"WHERE name = ? AND id IN (\n" +
+							"    SELECT i.id\n" +
+							"    FROM Items i\n" +
+							"    JOIN Orders o ON i.id = o.items_id\n" +
+							"    JOIN Company_Customer cc ON o.company_id = cc.id\n" +
+							"    WHERE i.name = ? AND cc.name = ?\n" +
+							");",fields);
+					JOptionPane.showMessageDialog(null,"This delete was successful","",JOptionPane.INFORMATION_MESSAGE);
+
+				}
+			}
+		});
 
 		Canvas.setBackground(ColorPanel);
 	}

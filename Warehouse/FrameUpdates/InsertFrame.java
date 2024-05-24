@@ -1,13 +1,12 @@
 package FrameUpdates;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
+import SqlManipulation.SqlSubmission;
 import Warehouse_frame.MainFrame;
 import Warehouse_frame._FrameCreating;
 
@@ -42,6 +41,8 @@ public class InsertFrame implements _FrameCreating {
 		
 		JPanel FieldFrame = new JPanel();
 		FieldFrame.setBackground(ColorPanel);
+
+		FieldFrame.setLayout(new GridLayout(5,2));
 		
 		JPanel Submition = new JPanel();
 		Submition.setBackground(ColorPanel);
@@ -54,17 +55,39 @@ public class InsertFrame implements _FrameCreating {
 		JLabel frameName = new JLabel("Insert item!");
 		
 		//i<part>: i is stands for item
-		JLabel iName = new JLabel("Item's name");
+		JLabel iName = new JLabel("Item's name:");
 		iName.setPreferredSize(new Dimension(200,20));
 
 		JTextField iFieldName = new JTextField();
 		iFieldName.setPreferredSize(new Dimension(200,20));
 
-		JLabel iPrice = new JLabel("Item's price");
-		iPrice.setPreferredSize(new Dimension(200,20));
 
-		JTextField iFieldPrice = new JTextField();
-		iFieldPrice.setPreferredSize(new Dimension(200,20));
+		JLabel iQuantity = new JLabel("Item's quantity:");
+		iQuantity.setPreferredSize(new Dimension(200,20));
+
+		JTextField iFieldQuantity = new JTextField();
+		iFieldQuantity.setPreferredSize(new Dimension(200,20));
+
+
+		JLabel iCompanyName = new JLabel("Company's name:");
+		iCompanyName.setPreferredSize(new Dimension(200,20));
+
+		JTextField iFieldCompanyName  = new JTextField();
+		iFieldCompanyName.setPreferredSize(new Dimension(200,20));
+
+
+		JLabel iCOwner = new JLabel("Company's owner:");
+		iCOwner.setPreferredSize(new Dimension(200,20));
+
+		JTextField iFieldCOwner = new JTextField();
+		iFieldCOwner.setPreferredSize(new Dimension(200,20));
+
+
+		JLabel iCAddress = new JLabel("Company's address:");
+		iCAddress.setPreferredSize(new Dimension(200,20));
+
+		JTextField iFieldCAddress = new JTextField();
+		iFieldCAddress.setPreferredSize(new Dimension(200,20));
 
 		OptionFrame.add(frameName);
 		
@@ -72,9 +95,45 @@ public class InsertFrame implements _FrameCreating {
 		FieldFrame.add(iFieldName);
 
 
-		FieldFrame.add(iPrice);
-		FieldFrame.add(iFieldPrice);
-		
+		FieldFrame.add(iQuantity);
+		FieldFrame.add(iFieldQuantity);
+
+		FieldFrame.add(iCompanyName);
+		FieldFrame.add(iFieldCompanyName);
+
+		FieldFrame.add(iCOwner);
+		FieldFrame.add(iFieldCOwner);
+
+		FieldFrame.add(iCAddress);
+		FieldFrame.add(iFieldCAddress);
+
+		JTextField[] fields = new JTextField[]{
+				iFieldCompanyName,iFieldCOwner,iFieldCAddress,iFieldName,iFieldQuantity,
+		};
+//When the submit button is clicked
+		Submit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				if(SqlSubmission.isFieldsEmpty(fields) == false){
+					SqlSubmission.SqlInsertion(
+							"INSERT INTO Company_Customer (name, owner, address)\n" +
+									"VALUES (?, ?, ?);\n"+
+									"INSERT INTO Items (name, quantities)\n" +
+									"VALUES (?, ?);"+
+									"INSERT INTO Orders (items_id, company_id, order_data)\n" +
+									"VALUES (\n" +
+									"    (SELECT id FROM Items WHERE name =?),\n" +
+									"    (SELECT id FROM Company_Customer WHERE name =?),\n" +
+									"    CURRENT_TIMESTAMP\n" +
+									");"
+							,fields
+					);
+					JOptionPane.showMessageDialog(null,"This insertion was successful","",JOptionPane.INFORMATION_MESSAGE);
+
+				};
+			}
+		});
 		Submition.add(Submit);
 				
 		Canvas.setBackground(ColorPanel);

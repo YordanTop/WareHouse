@@ -14,7 +14,7 @@ public class SqlSearch implements ActionListener {
 
     private String SearchField;
 
-    private JComboBox Filter;
+    private final JComboBox Filter;
 
     public SqlSearch(String sqlCommand, JComboBox filter,JTextField searchField){
         SqlCommand = sqlCommand;
@@ -36,7 +36,7 @@ public class SqlSearch implements ActionListener {
                 KeyWordSearch();
             }
             public void KeyWordSearch(){
-                SearchField = (searchField == null)?"":"Where I.name LIKE '%"+searchField.getText()+"%'";
+                SearchField = (searchField.getText().isEmpty())?" ":"Where I.name LIKE '%"+searchField.getText()+"%'";
             }
         });
 
@@ -71,7 +71,7 @@ public class SqlSearch implements ActionListener {
         if(Filter.getSelectedItem().toString().equals("Date")){
             SqlCommand += SearchField+"Order By O.order_data";
         }
-        SqlSubmission.ShowInfo(SqlCommand);
+        SqlSubmission.SqlInjector(SqlCommand);
 
         SqlCommand = OriginalCommand;
     }

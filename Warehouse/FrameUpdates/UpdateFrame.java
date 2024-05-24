@@ -1,13 +1,10 @@
 package FrameUpdates;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import SqlManipulation.SqlSubmission;
 import Warehouse_frame._FrameCreating;
@@ -32,7 +29,8 @@ public class UpdateFrame implements _FrameCreating {
 
 	@Override
 	public void CreateFrame() {
-		JTabbedPane tabs = new JTabbedPane();
+
+
 
 		Canvas.removeAll();
 		Canvas.revalidate();
@@ -49,36 +47,69 @@ public class UpdateFrame implements _FrameCreating {
 		JPanel Submition = new JPanel();
 		Submition.setBackground(ColorPanel);
 
-		Canvas.add(OptionFrame);
-		Canvas.add(FieldFrame);
-		Canvas.add(Submition);
-
 		//Layout objects
 		JLabel frameName = new JLabel("Update item!");
 
 		//i<part>: i is stands for item
-		JLabel iName = new JLabel("Item's name");
+		JLabel iName = new JLabel("Item's name:");
 		iName.setPreferredSize(new Dimension(200,20));
 
 		JTextField iFieldName = new JTextField();
 		iFieldName.setPreferredSize(new Dimension(200,20));
 
-		JLabel iPrice = new JLabel("Item's new quantities");
-		iPrice.setPreferredSize(new Dimension(200,20));
+		JLabel iQuntity = new JLabel("Item's new quantities:");
+		iQuntity.setPreferredSize(new Dimension(200,20));
 
-		JTextField iFieldPrice = new JTextField();
-		iFieldPrice.setPreferredSize(new Dimension(200,20));
+		JTextField iFieldQuantity = new JTextField();
+		iFieldQuantity.setPreferredSize(new Dimension(200,20));
+
+		JLabel iCName = new JLabel("Company's name:");
+		iCName.setPreferredSize(new Dimension(200,20));
+
+		JTextField iFieldCName = new JTextField();
+		iFieldCName.setPreferredSize(new Dimension(200,20));
 
 		OptionFrame.add(frameName);
 
 		FieldFrame.add(iName);
 		FieldFrame.add(iFieldName);
 
-		FieldFrame.add(iPrice);
-		FieldFrame.add(iFieldPrice);
+		FieldFrame.add(iQuntity);
+		FieldFrame.add(iFieldQuantity);
+
+		FieldFrame.add(iCName);
+		FieldFrame.add(iFieldCName);
+
+		FieldFrame.setLayout(new GridLayout(3,3));
+
+		JTextField[] fields = new JTextField[]{
+				iFieldName,iFieldQuantity,iFieldCName
+		};
 
 		Submition.add(Submit);
-		Submit.addActionListener(new SqlSubmission("Select * From Orders"));
+
+		Submit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(SqlSubmission.isFieldsEmpty(fields) == false){
+					SqlSubmission.SqlUpdate("UPDATE Items\n" +
+							"SET quantities = ?\n" +
+							"WHERE id IN (\n" +
+							"    SELECT Items.id\n" +
+							"    FROM Items\n" +
+							"    JOIN Orders ON Items.id = Orders.items_id\n" +
+							"    JOIN Company_Customer ON Orders.company_id = Company_Customer.id\n" +
+							"    WHERE Items.name = ? AND Company_Customer.name = ?\n" +
+							");",fields);
+					JOptionPane.showMessageDialog(null,"This update was successful","",JOptionPane.INFORMATION_MESSAGE);
+
+				}
+			}
+		});
+
+		Canvas.add(OptionFrame);
+		Canvas.add(FieldFrame);
+		Canvas.add(Submition);
 
 		Canvas.setBackground(ColorPanel);
 

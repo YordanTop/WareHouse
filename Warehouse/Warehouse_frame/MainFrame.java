@@ -3,6 +3,8 @@ package Warehouse_frame;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -20,7 +22,7 @@ public class MainFrame extends JFrame {
 	
 	//Search bar
 
-	JTextField searchField = new JTextField();
+	JTextField searchField = new JTextField(" ");
 	JButton searchButton = new JButton("Search");
 	
 	JPanel searchPanel = new JPanel();
@@ -107,9 +109,40 @@ public class MainFrame extends JFrame {
 				"INNER JOIN Items I ON I.id = O.items_id ",filter,searchField));
 		//Right Part Layout
 		
+		JButton ordersButton = new JButton("Show orders!");
+		JButton companyButton = new JButton("Show companies!");
+		JButton itemButton = new JButton("Show items!");
 
+		ordersButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SqlSubmission.SqlInjector("SELECT CC.name \"Companies\",\n" +
+						"       I.name \"Product\",\n" +
+						"       I.quantities \"Quantity\", \n" +
+						"       O.order_data \"Order data\",\n" +
+						"\n" +
+						"FROM Company_Customer CC \n" +
+						"INNER JOIN Orders O ON CC.id = O.company_id \n" +
+						"INNER JOIN Items I ON I.id = O.items_id Order By CC.name, I.name ASC");
+			}
+		});
+
+		companyButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SqlSubmission.SqlInjector("Select * From Company_Customer");
+			}
+		});
+
+		itemButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SqlSubmission.SqlInjector("Select * From Items");
+			}
+		});
 		this.add(rightPanel);
 
+		//Table design
 		rightPanel.add(tablePanel);
 		tablePanel.setPreferredSize(new Dimension(300,500));
 		tablePanel.setBackground(Color.BLACK);
@@ -117,6 +150,10 @@ public class MainFrame extends JFrame {
 		rightPanel.setBackground(new Color(0,0,0));
 
 		tablePanel.add(productPanel);
+
+		rightPanel.add(ordersButton);
+		rightPanel.add(companyButton);
+		rightPanel.add(itemButton);
 
 		productPanel.setPreferredSize(new Dimension(300,400));
 

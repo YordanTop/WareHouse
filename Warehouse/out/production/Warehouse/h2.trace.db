@@ -2666,13 +2666,3 @@ Where WHERE id IN (
     JOIN Company_Customer ON Orders.company_id = Company_Customer.id
     WHERE Items.name = 'Twinks' AND Company_Customer.name = 'Yordan'
 ) [42001-224]
-2024-05-24 15:44:05.069144+03:00 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT CC.name ""Companies"",\000a       I.name ""Product"",\000a       I.quantities ""Quantity"", \000a       O.order_data ""Order data"",\000a\000aFROM Company_Customer CC \000aINNER JOIN Orders O ON CC.id = O.company_id \000aINNER JOIN Items I ON I.id = O.items_id [*]null Order By CC.name"; SQL statement:
-SELECT CC.name "Companies",
-       I.name "Product",
-       I.quantities "Quantity", 
-       O.order_data "Order data",
-
-FROM Company_Customer CC 
-INNER JOIN Orders O ON CC.id = O.company_id 
-INNER JOIN Items I ON I.id = O.items_id null Order By CC.name [42000-224]
